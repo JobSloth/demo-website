@@ -67,10 +67,16 @@
 
 /* Glassmorphism utilities - Optimized blur */
 .glass {
-  background: var(--theme-glass);
-  backdrop-filter: blur(8px) saturate(180%);
-  -webkit-backdrop-filter: blur(8px) saturate(180%);
-  border: 1px solid var(--theme-border);
+  background: rgba(255, 255, 255, 0.03);
+  /* Extremely subtle */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.theme-employer .glass {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .glass-subtle {

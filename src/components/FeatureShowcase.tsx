@@ -30,46 +30,46 @@ const FeatureCard = ({
     return (
         <motion.div
             ref={ref}
-            initial={{ opacity: 0, y: 60 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="py-12 md:py-20 max-w-4xl mx-auto"
+            className="py-12 md:py-16 max-w-4xl mx-auto"
         >
-            {/* Content side - Centered */}
+            {/* Content side - Centered - Cleaner Look */}
             <div className="space-y-6 text-center flex flex-col items-center">
-                {/* Icon */}
+                {/* Icon - More subtle */}
                 <motion.div
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={isInView ? { scale: 1, opacity: 1 } : {}}
                     transition={{ delay: 0.2 + index * 0.1 }}
-                    className="w-16 h-16 rounded-2xl bg-gradient-to-br from-theme-primary/10 to-theme-accent/5 border border-theme-border flex items-center justify-center mb-4"
+                    className="w-14 h-14 rounded-full bg-theme-surface flex items-center justify-center mb-2"
                 >
-                    <feature.icon size={32} className="text-theme-primary" />
+                    <feature.icon size={28} className="text-theme-primary" />
                 </motion.div>
 
                 {/* Subtitle */}
-                <p className="text-theme-accent font-semibold text-sm uppercase tracking-widest">
+                <p className="text-theme-accent font-medium text-xs uppercase tracking-widest">
                     {feature.subtitle}
                 </p>
 
                 {/* Title */}
-                <h3 className="text-3xl lg:text-5xl font-display font-bold leading-tight max-w-2xl">
+                <h3 className="text-3xl lg:text-4xl font-display font-medium leading-tight max-w-2xl text-theme-text">
                     {feature.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-xl text-theme-text-muted leading-relaxed max-w-2xl">
+                <p className="text-lg text-theme-text-muted leading-relaxed max-w-2xl font-light">
                     {feature.description}
                 </p>
 
-                {/* Stats if available */}
+                {/* Stats if available - simplified */}
                 {feature.stats && (
                     <div className="pt-6">
-                        <div className="inline-flex items-center gap-4 glass rounded-2xl px-8 py-5">
-                            <span className="text-5xl font-display font-bold gradient-text">
+                        <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-theme-border/30 bg-theme-surface/30">
+                            <span className="text-2xl font-display font-bold text-theme-primary">
                                 {feature.stats.value}
                             </span>
-                            <span className="text-theme-text-muted text-sm max-w-24 text-left leading-tight">
+                            <span className="text-theme-text-muted text-xs uppercase tracking-wide font-medium">
                                 {feature.stats.label}
                             </span>
                         </div>

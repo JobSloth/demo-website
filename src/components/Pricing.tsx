@@ -16,12 +16,6 @@ const PricingCard = ({ title, price, features, isHighlighted = false, buttonText
             : 'bg-theme-bg-secondary/50 border-theme-border glass-subtle'
             } flex flex-col`}
     >
-        {isHighlighted && (
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-theme-primary to-theme-accent text-white text-xs font-bold uppercase tracking-widest shadow-lg">
-                Most Popular
-            </div>
-        )}
-
         <div className="mb-8">
             <h3 className="text-xl font-display font-semibold text-theme-text mb-2">{title}</h3>
             <p className="text-sm text-theme-text-muted h-10">{description}</p>
@@ -85,7 +79,6 @@ export const Pricing = () => {
                         title="For Companies"
                         price="1 Month Salary"
                         description="One simple fee per successful hire. Includes our 100% satisfaction guarantee."
-                        isHighlighted={true}
                         features={[
                             "Unlimited role postings",
                             "AI-verified candidate matches",
