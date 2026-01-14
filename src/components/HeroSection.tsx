@@ -1,11 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { useState } from 'react';
+import { DemoModal } from './DemoModal';
 
 interface HeroSectionProps {
     userType: 'candidate' | 'employer';
 }
 
 export const HeroSection = ({ userType }: HeroSectionProps) => {
+    const [showDemoModal, setShowDemoModal] = useState(false);
+
     const content = {
         candidate: {
             headline: "Find the job that fits",
@@ -135,7 +139,10 @@ export const HeroSection = ({ userType }: HeroSectionProps) => {
                                 </span>
                             </button>
 
-                            <button className="group px-8 py-4 rounded-full font-medium text-lg border border-theme-border bg-theme-surface/30 hover:bg-theme-surface/60 transition-all hover:-translate-y-0.5">
+                            <button
+                                onClick={() => setShowDemoModal(true)}
+                                className="group px-8 py-4 rounded-full font-medium text-lg border border-theme-border bg-theme-surface/30 hover:bg-theme-surface/60 transition-all hover:-translate-y-0.5"
+                            >
                                 <span className="flex items-center gap-2">
                                     {currentContent.ctaSecondary}
                                 </span>
@@ -147,6 +154,9 @@ export const HeroSection = ({ userType }: HeroSectionProps) => {
             </AnimatePresence>
 
             {/* Scroll indicator removed as requested */}
+
+            {/* Demo Modal */}
+            <DemoModal isOpen={showDemoModal} onClose={() => setShowDemoModal(false)} />
         </section>
     );
 };
