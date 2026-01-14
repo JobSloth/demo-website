@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -11,7 +11,7 @@ interface Step {
     id: number;
     title: string;
     description: string;
-    renderContent: () => JSX.Element;
+    renderContent: () => React.ReactNode;
 }
 
 export const DemoModal = ({ isOpen, onClose }: DemoModalProps) => {
@@ -363,8 +363,8 @@ export const DemoModal = ({ isOpen, onClose }: DemoModalProps) => {
                                         onClick={goToPreviousStep}
                                         disabled={currentStep === 0}
                                         className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all ${currentStep === 0
-                                                ? 'opacity-30 cursor-not-allowed bg-white/5 text-white/40'
-                                                : 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
+                                            ? 'opacity-30 cursor-not-allowed bg-white/5 text-white/40'
+                                            : 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
                                             }`}
                                     >
                                         <ChevronLeft size={18} />
@@ -377,10 +377,10 @@ export const DemoModal = ({ isOpen, onClose }: DemoModalProps) => {
                                             <div
                                                 key={index}
                                                 className={`h-2 rounded-full transition-all ${index === currentStep
-                                                        ? 'w-8 bg-gradient-to-r from-theme-primary to-theme-accent'
-                                                        : index < currentStep
-                                                            ? 'w-2 bg-theme-accent/60'
-                                                            : 'w-2 bg-white/20'
+                                                    ? 'w-8 bg-gradient-to-r from-theme-primary to-theme-accent'
+                                                    : index < currentStep
+                                                        ? 'w-2 bg-theme-accent/60'
+                                                        : 'w-2 bg-white/20'
                                                     }`}
                                             />
                                         ))}
@@ -391,8 +391,8 @@ export const DemoModal = ({ isOpen, onClose }: DemoModalProps) => {
                                         onClick={goToNextStep}
                                         disabled={currentStep === steps.length - 1}
                                         className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-medium transition-all ${currentStep === steps.length - 1
-                                                ? 'opacity-30 cursor-not-allowed bg-white/5 text-white/40'
-                                                : 'bg-gradient-to-r from-theme-primary to-theme-accent hover:shadow-lg hover:shadow-theme-primary/30 text-white'
+                                            ? 'opacity-30 cursor-not-allowed bg-white/5 text-white/40'
+                                            : 'bg-gradient-to-r from-theme-primary to-theme-accent hover:shadow-lg hover:shadow-theme-primary/30 text-white'
                                             }`}
                                     >
                                         Next
