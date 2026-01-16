@@ -49,7 +49,7 @@ const PricingCard = ({ title, price, features, isHighlighted = false, buttonText
 
 export const Pricing = () => {
     return (
-        <section id="pricing" className="py-24 px-6 md:px-12 lg:px-20 relative overflow-hidden">
+        <section id="pricing" className="px-6 md:px-12 lg:px-20 relative overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">Simple, transparent pricing</h2>

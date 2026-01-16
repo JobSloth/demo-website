@@ -1,23 +1,20 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
-import { useState } from 'react';
-import { DemoModal } from './DemoModal';
+import { ArrowRight, CheckCircle2, Calendar } from 'lucide-react';
+import { WaitlistForm } from './WaitlistForm';
 
 interface HeroSectionProps {
     userType: 'candidate' | 'employer';
 }
 
-export const HeroSection = ({ userType }: HeroSectionProps) => {
-    const [showDemoModal, setShowDemoModal] = useState(false);
+const calendlyLink = import.meta.env.VITE_CALENDLY_LINK || '#';
 
+export const HeroSection = ({ userType }: HeroSectionProps) => {
     const content = {
         candidate: {
             headline: "Find the job that fits",
             headlineAccent: "YOU",
             subline: "not the other way around",
             description: "Stop scrolling through endless listings. Our AI matches you with roles that align with your career goals, values, and the company culture you actually want.",
-            cta: "Start Your Journey",
-            ctaSecondary: "See How It Works",
             highlights: [
                 "Matched to your preferences",
                 "Conversational, personal touch",
@@ -29,8 +26,6 @@ export const HeroSection = ({ userType }: HeroSectionProps) => {
             headlineAccent: "Smarter.",
             subline: "Zero guesswork.",
             description: "Access pre-vetted, top-tier candidates in 72 hours. No more manual filtering, no more unqualified applications. Just perfect matches, delivered.",
-            cta: "Start Hiring Now",
-            ctaSecondary: "Book a Demo",
             highlights: [
                 "72h to first shortlist",
                 "Pre-vetted talent pool",
@@ -118,35 +113,44 @@ export const HeroSection = ({ userType }: HeroSectionProps) => {
                         </motion.div>
 
 
-                        {/* CTAs */}
+                        {/* CTAs - Different for candidate vs employer */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.45 }}
-                            className="flex flex-col sm:flex-row gap-4"
+                            className="w-full max-w-xl"
                         >
-                            <button className="group relative px-8 py-4 rounded-full font-semibold text-lg overflow-hidden transition-transform hover:-translate-y-0.5 active:translate-y-0">
-                                {/* Button gradient background */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-theme-primary to-theme-accent opacity-100" />
-                                <div className="absolute inset-0 bg-gradient-to-r from-theme-accent to-theme-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            {userType === 'candidate' ? (
+                                /* Waitlist form for candidates */
+                                <WaitlistForm className="mb-4" />
+                            ) : (
+                                /* CTA buttons for employers */
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <button className="group relative px-8 py-4 rounded-full font-semibold text-lg overflow-hidden transition-transform hover:-translate-y-0.5 active:translate-y-0">
+                                        {/* Button gradient background */}
+                                        <div className="absolute inset-0 bg-gradient-to-r from-theme-primary to-theme-accent opacity-100" />
+                                        <div className="absolute inset-0 bg-gradient-to-r from-theme-accent to-theme-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                                {/* Button glow */}
-                                <div className="absolute inset-0 rounded-full glow-primary opacity-50 group-hover:opacity-100 transition-opacity" />
+                                        {/* Button glow */}
+                                        <div className="absolute inset-0 rounded-full glow-primary opacity-50 group-hover:opacity-100 transition-opacity" />
 
-                                <span className="relative z-10 flex items-center gap-2 text-white">
-                                    {currentContent.cta}
-                                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                                </span>
-                            </button>
+                                        <span className="relative z-10 flex items-center gap-2 text-white">
+                                            Start Hiring Now
+                                            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                                        </span>
+                                    </button>
 
-                            <button
-                                onClick={() => setShowDemoModal(true)}
-                                className="group px-8 py-4 rounded-full font-medium text-lg border border-theme-border bg-theme-surface/30 hover:bg-theme-surface/60 transition-all hover:-translate-y-0.5"
-                            >
-                                <span className="flex items-center gap-2">
-                                    {currentContent.ctaSecondary}
-                                </span>
-                            </button>
+                                    <a
+                                        href={calendlyLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group px-8 py-4 rounded-full font-medium text-lg border border-theme-border bg-theme-surface/30 hover:bg-theme-surface/60 transition-all hover:-translate-y-0.5 inline-flex items-center justify-center gap-2"
+                                    >
+                                        <Calendar size={20} className="text-theme-accent" />
+                                        Book a Demo
+                                    </a>
+                                </div>
+                            )}
                         </motion.div>
 
                     </div>
@@ -154,9 +158,6 @@ export const HeroSection = ({ userType }: HeroSectionProps) => {
             </AnimatePresence>
 
             {/* Scroll indicator removed as requested */}
-
-            {/* Demo Modal */}
-            <DemoModal isOpen={showDemoModal} onClose={() => setShowDemoModal(false)} />
         </section>
     );
 };
